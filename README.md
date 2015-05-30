@@ -6,108 +6,34 @@
 <LINK REV="made" HREF="mailto:bill.cheng@acm.org"></HEAD>
 <BODY BGCOLOR="#FFFFFF" LINK="#D02090" VLINK="#996600" ALINK="#990000">
 
-<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH=100%>
-<TR><TD ALIGN=CENTER VALIGN=TOP WIDTH=112>
-    <!-- COL 1, should be identical to all other pages here -->
-    <TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH=113>
-    <TR><TD ALIGN=CENTER VALIGN=TOP WIDTH=112>
-        &nbsp;
-        </TD>
-    </TR>
-    <TR><TD ALIGN=CENTER VALIGN=TOP WIDTH=112>
-        <A HREF="http://www.cs.usc.edu/"><IMG SRC="../../images/usctommy.gif"
-            ALT="USC CSD Home" BORDER=0></A>
-        <!-- BR>&nbsp;<BR -->
-        <!-- IMG SRC="images/small-uc.gif" BORDER=0 -->
-        </TD>
-    </TR>
-    </TABLE>
-    </TD>
-    <!-- TD ALIGN=LEFT VALIGN=TOP WIDTH=13 -->
-    <!-- COL 2, should be identical to all other pages here -->
-        <!-- IMG SRC="images/spacer.gif" HEIGHT=1 WIDTH=13 -->
-    <!-- /TD -->
-    <TD ALIGN=LEFT VALIGN=TOP>
-    <!-- COL 3, every page should be different -->
-        <TABLE BORDER=0>
-        <!-- Page Header -->
-        <TR><TD ALIGN=LEFT VALIGH=TOP>
-                <A HREF="../../">Spring 2015<A>
-            </TD>
-            <TD ALIGN=RIGHT VALIGH=TOP>
-                <A HREF="../../">CSCI 531</A><BR>
-            </TD>
-        </TR>
-        <BR>
-        <!-- Page Title -->
-        <TR><TD COLSPAN=3 ALIGN=CENTER>
-                <H2>Homework #6</H2>
-                <H4>(100 points total)</H4>
-                <H2>AES-128</H2>
-                <B><I>Due 11:45PM
-                4/17/2015 (firm)</I></B>
-                <!--
-                <H3><FONT COLOR="red"><I>(Under Construction -
-                    Anything Can Change without Notice)</I></FONT></H3>
-                  -->
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A
-                NAME="intro"><B>Assignment</B></A></FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
-The purpose of this assignment is to get you familiar with
+
+The purpose of this assignment is to get familiar with
 AES and arithematics in <I>GF(2<SUP>8</SUP>)</I>
 by implementing AES-128 (Nk=4, Nb=4, Nr=10)
 from scratch with the flexibility
 of changing some of the internal tables.
 
-<P>
-
-Please see the
-<A HREF="../../lectures.html#tentative">lecture slides on AES</A> or
-the <A HREF="../../papers.html#aes">FIPS 197 AES specification</A>.
-
-<P>
-
-<A HREF="#submit">Electronic submissions</A> only.
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A
-                NAME="compile"><B>Compiling</B></A></FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
-Please use a <TT>Makefile</TT> so that when the grader simply enters:
-    <PRE>
-    make hw6</PRE>
+</TR>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
+        <FONT COLOR="#ffffff"><A
+        NAME="compile"><B>Compiling</B></A></FONT>
+    </TD>
+</TR>
+<PRE>
+make hw6</PRE>
 an executable named <B>hw6</B> is created.
-(Minor variation on the <TT>make</TT> command is allowed if it is
-clearly documented in your <TT>README</TT> file.)
-Please make sure that your submission conforms to
-<A HREF="../../makefile.html#requirements">other
-general compilation requirements</A>.
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A
-                NAME="syntax"><B>Commandline Syntax & Program
-                Output</B></A></FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
+
+<TR><TD>&nbsp;</TD></TR>
+<!-- Section -->
+<TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
+        <FONT COLOR="#ffffff"><A
+        NAME="syntax"><B>Commandline Syntax & Program
+        Output</B></A></FONT>
+    </TD>
+</TR>
+<!-- Top Section -->
+<TR><TD COLSPAN=3 ALIGN=LEFT>
 The commandline syntax for <B>hw6</B> is as follows:
 
 <PRE>
@@ -121,14 +47,14 @@ The commandline syntax for <B>hw6</B> is as follows:
 <P>
 
 Square bracketed items are optional.
-You must follow the UNIX convention that <B>commandline options</B>
+Follows the UNIX convention that <B>commandline options</B>
 can come in any order.  (Note: a <B>commandline option</B> is a
 commandline argument that begins with a <B>-</B> character in a
 commandline syntax specification.)
-If an input file is not specified, your program must
-read from <TT>stdin</TT>.
-Output of your program must go to <TT>stdout</TT> and
-error messages must go to <TT>stderr</TT>.
+If an input file is not specified, the program
+reads from <TT>stdin</TT>.
+Output of the program goes to <TT>stdout</TT> and
+error messages go to <TT>stderr</TT>.
 
 <P>
 
@@ -426,36 +352,17 @@ problem because it should never be accessed.)
     b10dd6ebc60ecfad084ed7e35d501eb3
     5b2338346846038cdd9c7da0cd1a411c</PRE>
 
-You can also calculate these values using either the
-extended Euclidean algorithm or a brute
-force method mentioned in class.  Or, if you prefer
-just to hardcode this into a table, that would be
-fine too.  You will need this table when you implement
-the <B>inverse</B> command.
-
-<P>
-
-Please note that before encrypting or decrypting, your program
-must make sure that the encryption key is valid and
-call the <TT>tablecheck</TT> functionality internally to
-make sure that you have a valid <TT>tablefile</TT> before proceeding.
-
-<P>
-
-Pleaes output reasonable and useful error messages if the command
-is malformed or file does not exist or inaccessible.  If the key file
-is malformed, please output meaningful error messages.
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A NAME="format">
-                <B><TT>tablefile</TT> Format</B></A></FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
+</TD>
+</TR>
+<TR><TD>&nbsp;</TD></TR>
+<!-- Section -->
+<TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
+<FONT COLOR="#ffffff"><A NAME="format">
+<B><TT>tablefile</TT> Format</B></A></FONT>
+</TD>
+</TR>
+<!-- Top Section -->
+<TR><TD COLSPAN=3 ALIGN=LEFT>
 A <TT>tablefile</TT> is an ASCII file containing exactly 3 lines.
 Each line has the format of <TT>key=value</TT> where <TT>key</TT>
 can be one of the following (must be in uppercase):
@@ -470,9 +377,6 @@ The <TT>P</TT> line corresponds to the <I>a(x)</I> polynomial
 in the <TT>MixColumns()</TT> transformation.
 The <TT>INVP</TT> line corresponds to the <I>a<SUP>-1</SUP>(x)</I>
 polynomial in the <TT>InvMixColumns()</TT> transformation.
-Please see the
-<A HREF="../../lectures.html#tentative">lecture slides on AES</A> or
-the <A HREF="../../papers.html#aes">FIPS 197 AES specification</A> for details.
 The following are requirements for each of the tables (and corresponding
 input lines).
 
@@ -587,174 +491,6 @@ The <A HREF="hw6-grading.txt">grading guidelines</A> has been made available.
 Please run the scripts in the guidelines on <TT>nunki.usc.edu</TT>.
 
 <P>     
-        
-The grading guidelines is the <B>only</B> grading procedure we will use to
-grade your program.  No other grading procedure will be used.
-To the best of our effort, we will only change the testing data for
-grading but not the commands.  (We may make minor changes if we discover
-bugs in the script or things that we forgot to test.)  It is strongly
-recommended that you run your code through the scripts in the grading guidelines.
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A
-                NAME="misc"><B>Miscellaneous Requirements and Hints</B></A>
-                    </FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
-<UL>
-<LI>If you use any publicly available AES-specific
-    code or code that performs multiplication in <I>GF(2<SUP>8</SUP>)</I>,
-    please make sure you give explicit credit in your code and also
-    document it in your README file.
-    One reference given in class was
-    <A HREF="http://en.wikipedia.org/wiki/Finite_field_arithmetic#Program_examples">
-    the code fragment here</A>.  I do not know if this works,
-    please check it yourself to see if it's suitable.
-<P>
-<LI>Although there is no memory buffer size limit for this assignment, when
-    reading an input file for encryption/decryption, please use a reasonable
-    size file buffer.
-<P>
-<LI>It's important that <B>every byte</B> of your data is read and written
-    correctly.  You will <B>lose a lot of points</B> if one byte of data is
-    generated incorrectly!  The grading of this assignment will be <B>harsh</B>.
-<P>
-<LI>Please follow the UNIX convention that, when your output is an ASCII
-    file, append '\n' in the last line of the output if it's not a
-    blank line.  (This way, you don't get the commandline prompt appearing at
-    the wrong place on the screen.)
-<P>
-<LI>String I/O functions such as <TT>fgets()</TT>, <TT>scanf()</TT>, and
-    <TT>printf()</TT> are really meant for inputing/outputing
-    null-terminated <I>strings</I>.
-    Do <B>not</B> use them to input/output binary data!
-<P>
-<LI>The Solaris workstations in the ISD lab in SAL have the same
-    setup as nunki.usc.edu.  So, if you are logged on to one of
-    these workstations, please do your development locally and
-    not to overload nunki unnecessarily.
-<P>
-<LI>Start working on this <B>early</B>!  Please don't complain
-    to the instructor that this assignment is too tedious or
-    it takes too much work just to parse the commandline.
-    Get it done early and get it done right!
-<P>
-<LI>Hints on parsing a <TT>tablefile</TT>
-    <A HREF="parsing.html">has been made available</A>.
-</UL>
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        <!-- Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT BGCOLOR="#000000" WIDTH=100%>
-                <FONT COLOR="#ffffff"><A NAME="submit"><B>Submission</B></A></FONT>
-            </TD>
-        </TR>
-        <!-- Top Section -->
-        <TR><TD COLSPAN=3 ALIGN=LEFT>
-All assignments are to be submitted electronically - including
-your README file. To submit your work, you must first
-<TT>tar</TT> all the files you want to submit into a <B>tarball</B> and
-<TT>gzip</TT> it to create a <B>gzipped tarfile</B> named
-<TT><B>hw6.tar.gz</B></TT>.  Then you upload
-<TT><B>hw6.tar.gz</B></TT> to the
-<A HREF="../../bsubmit.html">Bistro</A> system.
-On <TT>nunki.usc.edu</TT> or <TT>aludra.usc.edu</TT>,
-the command you can use to create a gzipped tarfile is:
-
-    <PRE>
-    /usr/usc/bin/gtar cvzf hw6.tar.gz MYFILES</PRE>
-
-Where <B><TT>MYFILES</TT></B> is the list of file names that you are submitting
-(you can also use wildcard characters if you are sure that it will pick up only
-the right files).
-<B>DO NOT</B> submit your compiled code, just your source code and
-README file.  <B>Two point will be deducted</B> if you submit extra
-binary files, such as <TT>hw6</TT>, <TT>.o</TT>,
-<TT>core</TT>, or files that can be <B>generated</B> from the rest of your submission.
-
-<P>
-Please note that the 2nd commandline argument of the <TT>gtar</TT> command above
-is the <B>output</B> filename of the <TT>gtar</TT> command.  So, if you omit
-<TT>hw6.tar.gz</TT> above, you may accidentally replace one of your files with
-the output of the <TT>gtar</TT> command.  So, please make sure that the
-first commandline argument is <TT><B>cvzf</B></TT> and the 2nd commandline argument
-is <TT><B>hw6.tar.gz</B></TT>.
-
-<P>
-In your README file, you should include the command that the grader
-should use to compile your code to generate <B><TT>hw6</TT></B>.
-If you don't include such instruction, the grader will assume that the command
-specified in the spec should be used to compile your code.
-But if they can't get your code to compile easily and you don't submit
-compilation instructions, you will lose points.  Please also note that
-you MUST include a README file in your submission.  If you have nothing
-to put inside the README file, please write "(This file intentionally left blank.)"
-in your README file.
-
-<P>
-Here are a couple of sample commands for creating your <TT>hw6.tar.gz</TT> file
-(your command will vary depending on what files you want to submit):
-    <PRE>
-    /usr/usc/bin/gtar cvzf hw6.tar.gz *.c *.h Makefile README
-    /usr/usc/bin/gtar cvzf hw6.tar.gz *.cpp *.h Makefile README.txt</PRE>
-
-You should read the output of the above commands carefully to make sure
-that <TT>hw6.tar.gz</TT> is created properly.
-If you don't understand the output of the above commands, you need to learn
-how to read it!  It's your responsibility to ensure that
-<TT>hw6.tar.gz</TT> is created properly.
-
-<P>
-You need to run <A HREF="../../bsubmit.html"><B><TT>bsubmit</TT></B></A> to
-submit hw6.tar.gz to the submission server.
-Please use the following command:
-    <PRE><B>
-    ~csci551b/bin/bsubmit upload \
-        -email `whoami`@usc.edu \
-        -event merlot.usc.edu_80_1372906710_66 \
-        -file hw6.tar.gz</B></PRE>
-
-Please note that the quotation marks surrounding <TT>whoami</TT> are
-<B>back-quote</B> characters and not single quotes.  It's best if
-you just copy and paste the above command into your console and not
-try to type the whole command in.
-
-<P>
-
-If the command is executed successfully, the output should look like the
-<A HREF="../../bsubmit.html#normal">sample mentioned in the submission web page</A>.
-If it doesn't look like that, please fix your command and rerun it until it looks
-right.  If there are problems, please contact the instructor.
-
-<P>
-It is extreme important that you also <A HREF="../../submit.html#verify"><B>verify your submission</B></A>
-after you have submitted <TT>hw6.tar.gz</TT> electronically to make
-sure that everything you have submitted is everything you wanted us to grade.
-
-<P>
-Finally, please be familiar with the <A HREF="../../submit.html">Electronic Submission Guidelines</A>
-and information on the <A HREF="../../bsubmit.html">bsubmit web page</A>.
-            </TD>
-        </TR>
-        <TR><TD>&nbsp;</TD></TR>
-        </TABLE>
-    </TD>
-</TR>
-</TABLE>
-
-<HR>
-[<I>Last updated Sat Jan 10 2015</I>] &nbsp;&nbsp;
-[<I>Please see <A
-HREF="../../copyright.html">copyright</A> regarding copying.</I>]
-
-<!-- @(#)$Id: index.html,v 1.4 2015/01/10 23:43:54 william Exp $ -->
-
 </BODY>
 </HTML>
 
